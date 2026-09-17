@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import AppLayout from '@/components/layout/AppLayout';
 import PrintCardModal from '@/components/cards/PrintCardModal';
@@ -16,6 +16,7 @@ import {
   Loader2,
   X,
   PlusCircle,
+  Sparkles,
 } from 'lucide-react';
 import { format } from 'date-fns';
 
@@ -26,6 +27,8 @@ export default function NewCardPage() {
   const [mrNumber, setMrNumber] = useState('');
   const [patientName, setPatientName] = useState('');
   const [wardName, setWardName] = useState('');
+  const [availableWards, setAvailableWards] = useState<string[]>([]);
+  const wardDebounceTimer = useRef<NodeJS.Timeout | null>(null);
 
   const [attendantName, setAttendantName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -43,9 +46,26 @@ export default function NewCardPage() {
   const [createdCardForPrint, setCreatedCardForPrint] = useState<any>(null);
   const [isPrintOpen, setIsPrintOpen] = useState(false);
 
-  // Fetch next card number automatically
+  // Load existing distinct wards on mount
   useEffect(() => {
-    fetch('/api/cards/next-number')
+    fetch('/api/cards/wards')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.wards && Array.isArray(data.wards)) {
+          setAvailableWards(data.wards);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  // Fetch next card number automatically for a specific ward
+  const fetchNextNumberForWard = (targetWard: string) => {
+    setFetchingNumber(true);
+    const url = targetWard.trim()
+      ? `/api/cards/next-number?wardName=${encodeURIComponent(targetWard.trim())}`
+      : '/api/cards/next-number';
+
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         if (data.cardNumber) setCardNumber(data.cardNumber);
@@ -53,10 +73,27 @@ export default function NewCardPage() {
       })
       .catch((err) => {
         console.error('Error fetching card number:', err);
-        setCardNumber('AT-000001');
         setFetchingNumber(false);
       });
+  };
+
+  // Initial load
+  useEffect(() => {
+    fetchNextNumberForWard('');
   }, []);
+
+  const handleWardInputChange = (val: string) => {
+    setWardName(val);
+    if (wardDebounceTimer.current) clearTimeout(wardDebounceTimer.current);
+    wardDebounceTimer.current = setTimeout(() => {
+      fetchNextNumberForWard(val);
+    }, 300);
+  };
+
+  const handleSelectWardPill = (selected: string) => {
+    setWardName(selected);
+    fetchNextNumberForWard(selected);
+  };
 
   const netReceived = (Number(paymentReceived) || 0) - (Number(returnPayment) || 0);
 
@@ -184,11 +221,37 @@ export default function NewCardPage() {
                 type="text"
                 required
                 autoFocus
-                placeholder="e.g. ICU - BED 4 / EMERGENCY / CCU / GENERAL WARD 3"
+                placeholder="e.g. ICU - BED 4 / EMERGENCY / CCU-1 / POST CATH / CMW"
                 value={wardName}
-                onChange={(e) => setWardName(e.target.value)}
+                onChange={(e) => handleWardInputChange(e.target.value)}
                 className="w-full px-4 py-3.5 bg-slate-900/90 border-2 border-indigo-400 rounded-xl text-lg sm:text-xl font-black text-amber-300 uppercase tracking-wider placeholder:text-slate-600 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/20 outline-none shadow-inner transition"
               />
+
+              {/* Quick Ward Selection Pills */}
+              {availableWards.length > 0 && (
+                <div className="mt-3">
+                  <span className="text-[11px] font-bold text-indigo-300 uppercase tracking-wider block mb-1.5 flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Quick Select Ward (Auto-Numbers Card):</span>
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {availableWards.map((w) => (
+                      <button
+                        key={w}
+                        type="button"
+                        onClick={() => handleSelectWardPill(w)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-black uppercase transition-all tracking-wide border ${
+                          wardName === w
+                            ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 border-amber-300 shadow-md scale-105'
+                            : 'bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white border-indigo-700/60 hover:border-indigo-400'
+                        }`}
+                      >
+                        {w}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -298,16 +361,27 @@ export default function NewCardPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                Card Number (Unique) *
-              </label>
+              <div className="flex items-center gap-2 mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase">
+                  Card Number (Unique) *
+                </label>
+                {wardName ? (
+                  <span className="text-[10px] font-black px-2 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded uppercase">
+                    Auto-Linked to: {wardName}
+                  </span>
+                ) : (
+                  <span className="text-[10px] font-medium text-slate-400">
+                    (Auto-numbers when Ward is selected)
+                  </span>
+                )}
+              </div>
               <div className="relative max-w-sm">
                 <input
                   type="text"
                   required
                   value={cardNumber}
                   onChange={(e) => setCardNumber(e.target.value)}
-                  placeholder="e.g. AT-000001"
+                  placeholder="e.g. CCU-1-001 or Post Cath-001"
                   className="w-full px-3 py-2 border-2 border-sky-600 rounded-lg text-base font-black text-sky-900 focus:ring-2 focus:ring-sky-500 outline-none uppercase tracking-wider"
                 />
                 {fetchingNumber && (
@@ -315,7 +389,7 @@ export default function NewCardPage() {
                 )}
               </div>
               <p className="text-[11px] text-slate-500 mt-1 font-medium">
-                Auto-generated unique card identifier. Can be manually customized if needed.
+                Auto-generated with Ward name &amp; sequential number. Can be manually customized if needed.
               </p>
             </div>
           </div>
