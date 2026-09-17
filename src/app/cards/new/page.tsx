@@ -117,21 +117,26 @@ export default function NewCardPage() {
   return (
     <AppLayout>
       <div className="max-w-4xl mx-auto space-y-6">
-        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-          <div>
-            <h1 className="text-xl font-extrabold text-slate-900 tracking-wide uppercase">
-              New Attendant Card
-            </h1>
-            <p className="text-xs text-slate-500 mt-0.5 font-medium">
-              Issue a new visitor deposit card for hospital reception
-            </p>
+        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950 p-6 rounded-2xl border border-indigo-900/60 shadow-xl flex items-center justify-between text-white">
+          <div className="flex items-center space-x-3.5">
+            <div className="p-3 rounded-xl bg-indigo-500/20 border border-indigo-500/40 text-cyan-400">
+              <PlusCircle className="w-6 h-6" />
+            </div>
+            <div>
+              <h1 className="text-xl font-black tracking-wider uppercase text-white">
+                New Attendant Pass Issuance
+              </h1>
+              <p className="text-xs text-slate-300 font-medium">
+                Issue a visitor attendant security pass with ward authorization
+              </p>
+            </div>
           </div>
           <button
             onClick={() => router.push('/cards')}
-            className="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-lg transition uppercase flex items-center space-x-1"
+            className="px-3.5 py-2 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-xl transition uppercase flex items-center space-x-1.5 shadow-sm"
           >
             <X className="w-4 h-4" />
-            <span>Cancel</span>
+            <span>Back to Cards</span>
           </button>
         </div>
 
@@ -149,16 +154,53 @@ export default function NewCardPage() {
           }}
           className="space-y-6"
         >
+          {/* PRIMARY SECTION: WARD LOCATION (FIRST & BIGGEST) */}
+          <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 rounded-2xl border-2 border-indigo-500/60 shadow-xl p-6 text-white space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2.5">
+                <div className="p-2 rounded-xl bg-indigo-500/20 border border-indigo-500/40 text-cyan-400">
+                  <Building2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="font-black text-sm uppercase tracking-wider text-white">
+                    WARD LOCATION (PRIMARY FIELD)
+                  </h2>
+                  <p className="text-[11px] text-slate-400 font-medium">
+                    This ward will be highlighted and printed in bold on the attendant pass
+                  </p>
+                </div>
+              </div>
+              <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                REQUIRED FIRST
+              </span>
+            </div>
+
+            <div>
+              <label className="block text-xs font-black text-cyan-300 uppercase tracking-wider mb-2">
+                ENTER WARD / ROOM NAME *
+              </label>
+              <input
+                type="text"
+                required
+                autoFocus
+                placeholder="e.g. ICU - BED 4 / EMERGENCY / CCU / GENERAL WARD 3"
+                value={wardName}
+                onChange={(e) => setWardName(e.target.value)}
+                className="w-full px-4 py-3.5 bg-slate-900/90 border-2 border-indigo-400 rounded-xl text-lg sm:text-xl font-black text-amber-300 uppercase tracking-wider placeholder:text-slate-600 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/20 outline-none shadow-inner transition"
+              />
+            </div>
+          </div>
+
           {/* Section 1: Patient Information */}
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 space-y-4">
-            <div className="flex items-center space-x-2 border-b border-slate-100 pb-3 text-sky-800">
-              <User className="w-5 h-5" />
-              <h2 className="font-extrabold text-sm uppercase tracking-wider">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+            <div className="flex items-center space-x-2 border-b border-slate-100 pb-3 text-indigo-900">
+              <User className="w-5 h-5 text-indigo-600" />
+              <h2 className="font-black text-sm uppercase tracking-wider">
                 PATIENT INFORMATION
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
                   Date of Issue *
@@ -168,7 +210,7 @@ export default function NewCardPage() {
                   required
                   value={dateOfIssue}
                   onChange={(e) => setDateOfIssue(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-indigo-500 outline-none"
                 />
               </div>
 
@@ -179,11 +221,10 @@ export default function NewCardPage() {
                 <input
                   type="text"
                   required
-                  autoFocus
                   placeholder="e.g. MR-10492"
                   value={mrNumber}
                   onChange={(e) => setMrNumber(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-indigo-500 outline-none"
                 />
               </div>
 
@@ -197,21 +238,7 @@ export default function NewCardPage() {
                   placeholder="Enter full patient name"
                   value={patientName}
                   onChange={(e) => setPatientName(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Ward Name *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. General Ward / ICU / Room 204"
-                  value={wardName}
-                  onChange={(e) => setWardName(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-indigo-500 outline-none"
                 />
               </div>
             </div>

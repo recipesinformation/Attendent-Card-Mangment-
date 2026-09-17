@@ -70,9 +70,19 @@ export default function PrintCardModal({ card, isOpen, onClose }: PrintCardModal
               </p>
             </div>
 
+            {/* WARD - FIRST AND BIGGEST FIELD */}
+            <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 text-white p-3 rounded-xl border-2 border-indigo-400/60 shadow-md text-center">
+              <span className="text-[9px] font-black uppercase tracking-widest text-cyan-300 block">
+                ★ AUTHORIZED WARD LOCATION ★
+              </span>
+              <span className="text-xl sm:text-2xl font-black uppercase tracking-wider text-amber-300 drop-shadow-sm block">
+                {card.wardName}
+              </span>
+            </div>
+
             <div className="flex justify-between items-center bg-slate-100 px-3 py-1.5 rounded border border-slate-300">
               <span className="text-xs font-bold uppercase text-slate-600">Card Number:</span>
-              <span className="text-sm font-black text-sky-800">{card.cardNumber}</span>
+              <span className="text-sm font-black text-indigo-900">{card.cardNumber}</span>
             </div>
 
             <div className="grid grid-cols-2 gap-2 text-xs font-medium">
@@ -95,15 +105,9 @@ export default function PrintCardModal({ card, isOpen, onClose }: PrintCardModal
                 <span className="text-[10px] uppercase font-bold text-slate-500 block">Attendant Name:</span>
                 <span className="font-bold text-slate-900 text-sm">{card.attendantName}</span>
               </div>
-              <div className="grid grid-cols-2 gap-2 pt-1">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-500 block">Phone Number:</span>
-                  <span className="font-semibold text-slate-800">{card.phoneNumber}</span>
-                </div>
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-500 block">Ward Name:</span>
-                  <span className="font-semibold text-slate-800">{card.wardName}</span>
-                </div>
+              <div>
+                <span className="text-[10px] uppercase font-bold text-slate-500 block">Phone Number:</span>
+                <span className="font-semibold text-slate-800">{card.phoneNumber}</span>
               </div>
             </div>
 
@@ -158,6 +162,16 @@ export default function PrintCardModal({ card, isOpen, onClose }: PrintCardModal
             <p className="text-xs font-semibold">Official Reception Entry Pass</p>
           </div>
 
+          {/* WARD - FIRST AND BIGGEST FIELD FOR PHYSICAL PRINT */}
+          <div className="border-4 border-black p-3 text-center my-2 bg-gray-100">
+            <span className="text-xs font-black uppercase tracking-widest block text-gray-800">
+              ★ AUTHORIZED WARD LOCATION ★
+            </span>
+            <span className="text-3xl font-black uppercase tracking-wider block text-black mt-0.5">
+              {card.wardName}
+            </span>
+          </div>
+
           <div className="flex justify-between items-center border-b border-gray-400 py-1 font-bold text-sm">
             <span>CARD NO: {card.cardNumber}</span>
             <span>DATE: {formattedDate}</span>
@@ -179,10 +193,6 @@ export default function PrintCardModal({ card, isOpen, onClose }: PrintCardModal
             <div className="grid grid-cols-3">
               <span className="font-bold uppercase text-xs">Phone Number:</span>
               <span className="col-span-2 font-semibold">{card.phoneNumber}</span>
-            </div>
-            <div className="grid grid-cols-3">
-              <span className="font-bold uppercase text-xs">Ward Name:</span>
-              <span className="col-span-2 font-semibold">{card.wardName}</span>
             </div>
           </div>
 

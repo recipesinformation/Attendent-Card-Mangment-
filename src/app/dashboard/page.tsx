@@ -71,28 +71,33 @@ export default function DashboardPage() {
     <AppLayout>
       <div className="space-y-6">
         {/* Header Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-          <div>
-            <h1 className="text-xl font-extrabold text-slate-900 tracking-wide uppercase">
-              Dashboard Overview
-            </h1>
-            <p className="text-xs text-slate-500 mt-0.5 font-medium">
-              Real-time operational summary & front-desk statistics
-            </p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950 p-6 rounded-2xl border border-indigo-900/60 shadow-xl text-white">
+          <div className="flex items-center space-x-3.5">
+            <div className="p-3 rounded-xl bg-indigo-500/20 border border-indigo-500/40 text-cyan-400">
+              <BarChart3 className="w-6 h-6" />
+            </div>
+            <div>
+              <h1 className="text-xl font-black tracking-wider uppercase text-white">
+                Admin Command Dashboard
+              </h1>
+              <p className="text-xs text-slate-300 font-medium">
+                Live reception analytics, active ward attendants, and cash collection balance
+              </p>
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2.5">
             <Link
               href="/cards/new"
-              className="px-4 py-2.5 bg-sky-700 hover:bg-sky-800 text-white text-xs font-bold rounded-lg shadow transition flex items-center space-x-2 uppercase"
+              className="px-4 py-2.5 bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white text-xs font-black rounded-xl shadow-lg shadow-indigo-500/25 transition-all flex items-center space-x-2 uppercase border border-indigo-400/40"
             >
               <PlusCircle className="w-4 h-4" />
-              <span>+ NEW ATTENDANT CARD</span>
+              <span>+ ISSUE NEW CARD</span>
             </Link>
 
             <Link
               href="/cards"
-              className="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-lg shadow transition flex items-center space-x-2 uppercase"
+              className="px-4 py-2.5 bg-slate-800/90 hover:bg-slate-800 text-slate-200 hover:text-white text-xs font-bold rounded-xl border border-slate-700 shadow transition flex items-center space-x-2 uppercase"
             >
               <CreditCard className="w-4 h-4" />
               <span>ALL CARDS</span>
@@ -100,7 +105,7 @@ export default function DashboardPage() {
 
             <Link
               href="/reports"
-              className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-lg shadow transition flex items-center space-x-2 uppercase"
+              className="px-4 py-2.5 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 hover:text-emerald-200 text-xs font-bold rounded-xl border border-emerald-500/40 shadow transition flex items-center space-x-2 uppercase"
             >
               <BarChart3 className="w-4 h-4" />
               <span>REPORTS</span>
@@ -250,18 +255,18 @@ export default function DashboardPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-100 text-slate-600 font-extrabold uppercase border-b border-slate-200">
+              <thead className="bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950 text-white font-black uppercase tracking-wider border-b border-indigo-900/50">
                 <tr>
-                  <th className="px-4 py-3">Card No</th>
-                  <th className="px-4 py-3">Date</th>
-                  <th className="px-4 py-3">MR No</th>
-                  <th className="px-4 py-3">Patient Name</th>
-                  <th className="px-4 py-3">Attendant</th>
-                  <th className="px-4 py-3">Ward</th>
-                  <th className="px-4 py-3">Payment</th>
-                  <th className="px-4 py-3">Return</th>
-                  <th className="px-4 py-3">Net</th>
-                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3.5">Card No</th>
+                  <th className="px-4 py-3.5 text-amber-300">★ Authorized Ward</th>
+                  <th className="px-4 py-3.5">Date</th>
+                  <th className="px-4 py-3.5">MR No</th>
+                  <th className="px-4 py-3.5">Patient Name</th>
+                  <th className="px-4 py-3.5">Attendant</th>
+                  <th className="px-4 py-3.5">Payment</th>
+                  <th className="px-4 py-3.5">Return</th>
+                  <th className="px-4 py-3.5">Net</th>
+                  <th className="px-4 py-3.5">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 font-medium text-slate-800">
@@ -273,30 +278,35 @@ export default function DashboardPage() {
                   </tr>
                 ) : (
                   recentCards.map((card) => (
-                    <tr key={card.id} className="hover:bg-slate-50 transition">
-                      <td className="px-4 py-3 font-bold text-sky-800">{card.cardNumber}</td>
+                    <tr key={card.id} className="hover:bg-indigo-50/40 transition">
+                      <td className="px-4 py-3 font-black text-indigo-900">{card.cardNumber}</td>
+                      {/* WARD COLUMN - PROMINENT, BOLD & FIRST-CLASS */}
+                      <td className="px-4 py-3">
+                        <span className="inline-block px-3 py-1 bg-gradient-to-r from-amber-500/20 to-amber-500/10 text-amber-950 border border-amber-300 rounded-lg font-black text-xs uppercase tracking-wide shadow-xs">
+                          {card.wardName}
+                        </span>
+                      </td>
                       <td className="px-4 py-3 text-slate-600">
                         {format(new Date(card.dateOfIssue), 'dd-MM-yyyy')}
                       </td>
-                      <td className="px-4 py-3 font-semibold">{card.mrNumber}</td>
-                      <td className="px-4 py-3 font-bold text-slate-900">{card.patientName}</td>
-                      <td className="px-4 py-3">{card.attendantName}</td>
-                      <td className="px-4 py-3">{card.wardName}</td>
-                      <td className="px-4 py-3 font-bold text-emerald-700">
+                      <td className="px-4 py-3 font-semibold text-slate-700">{card.mrNumber}</td>
+                      <td className="px-4 py-3 font-black text-slate-900">{card.patientName}</td>
+                      <td className="px-4 py-3 text-slate-700">{card.attendantName}</td>
+                      <td className="px-4 py-3 font-black text-emerald-700">
                         Rs. {card.paymentReceived.toFixed(2)}
                       </td>
-                      <td className="px-4 py-3 font-bold text-rose-700">
+                      <td className="px-4 py-3 font-black text-rose-700">
                         Rs. {card.returnPayment.toFixed(2)}
                       </td>
-                      <td className="px-4 py-3 font-bold text-sky-900">
+                      <td className="px-4 py-3 font-black text-indigo-950">
                         Rs. {card.netReceived.toFixed(2)}
                       </td>
                       <td className="px-4 py-3">
                         <span
-                          className={`px-2 py-0.5 rounded text-[10px] font-black uppercase ${
+                          className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${
                             card.status === 'ACTIVE'
-                              ? 'bg-emerald-100 text-emerald-800'
-                              : 'bg-slate-200 text-slate-700'
+                              ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                              : 'bg-slate-200 text-slate-700 border border-slate-300'
                           }`}
                         >
                           {card.status}

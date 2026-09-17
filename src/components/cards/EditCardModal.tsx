@@ -91,15 +91,17 @@ export default function EditCardModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-xl overflow-hidden border border-slate-200">
-        <div className="bg-sky-800 px-6 py-4 text-white flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Edit3 className="w-5 h-5 text-sky-200" />
-            <h2 className="font-bold text-base uppercase">Edit Attendant Card</h2>
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden border border-slate-200">
+        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950 px-6 py-4 text-white flex items-center justify-between border-b border-indigo-900/60">
+          <div className="flex items-center space-x-2.5">
+            <div className="p-1.5 rounded-lg bg-indigo-500/20 border border-indigo-500/40">
+              <Edit3 className="w-4 h-4 text-cyan-400" />
+            </div>
+            <h2 className="font-black text-sm uppercase tracking-wider">Edit Attendant Pass</h2>
           </div>
           <button
             onClick={onClose}
-            className="text-sky-200 hover:text-white p-1 rounded hover:bg-sky-700 transition"
+            className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition"
           >
             <X className="w-5 h-5" />
           </button>
@@ -113,9 +115,23 @@ export default function EditCardModal({
             </div>
           )}
 
+          {/* WARD - FIRST AND BIGGEST FIELD */}
+          <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 rounded-xl p-4 text-white border-2 border-indigo-500/60 shadow-md">
+            <label className="block text-[10px] font-black uppercase tracking-widest text-cyan-300 mb-1.5">
+              ★ AUTHORIZED WARD LOCATION (PRIMARY FIELD) *
+            </label>
+            <input
+              type="text"
+              required
+              value={wardName}
+              onChange={(e) => setWardName(e.target.value)}
+              className="w-full px-4 py-2.5 bg-slate-900 border-2 border-indigo-400 rounded-lg text-lg font-black text-amber-300 uppercase tracking-wide focus:border-cyan-400 outline-none"
+            />
+          </div>
+
           <div className="flex items-center justify-between bg-slate-100 p-3 rounded-lg border border-slate-200">
             <span className="text-xs font-bold uppercase text-slate-600">Card Number (Locked):</span>
-            <span className="text-sm font-black text-sky-800">{card.cardNumber}</span>
+            <span className="text-sm font-black text-indigo-900">{card.cardNumber}</span>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -128,7 +144,7 @@ export default function EditCardModal({
                 required
                 value={dateOfIssue}
                 onChange={(e) => setDateOfIssue(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-sky-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-indigo-500"
               />
             </div>
 
@@ -141,22 +157,7 @@ export default function EditCardModal({
                 required
                 value={mrNumber}
                 onChange={(e) => setMrNumber(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-sky-500"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                Ward Name *
-              </label>
-              <input
-                type="text"
-                required
-                value={wardName}
-                onChange={(e) => setWardName(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-sky-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-indigo-500"
               />
             </div>
           </div>

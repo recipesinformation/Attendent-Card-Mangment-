@@ -16,9 +16,9 @@ export default function NavigationTabs() {
   ];
 
   return (
-    <nav className="bg-white border-b border-slate-200 shadow-sm no-print sticky top-16 z-20">
+    <nav className="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-md no-print sticky top-16 z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex space-x-2 sm:space-x-4 py-2 overflow-x-auto">
+        <div className="flex space-x-2 sm:space-x-3 py-2.5 overflow-x-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -27,14 +27,17 @@ export default function NavigationTabs() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${
+                className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
                   isActive
-                    ? 'bg-sky-700 text-white shadow-sm'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 text-white shadow-md shadow-indigo-500/25 border border-indigo-400/40'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800/80 border border-transparent'
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-sky-600'}`} />
+                <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-white'}`} />
                 <span>{item.label}</span>
+                {isActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-300 ml-1"></span>
+                )}
               </Link>
             );
           })}

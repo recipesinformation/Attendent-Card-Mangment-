@@ -43,27 +43,49 @@ export default function ViewCardModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-xl overflow-hidden border border-slate-200">
-        <div className="bg-sky-800 px-6 py-4 text-white flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Eye className="w-5 h-5 text-sky-200" />
-            <h2 className="font-bold text-base uppercase">Attendant Card Details</h2>
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden border border-slate-200">
+        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950 px-6 py-4 text-white flex items-center justify-between border-b border-indigo-900/60">
+          <div className="flex items-center space-x-2.5">
+            <div className="p-1.5 rounded-lg bg-indigo-500/20 border border-indigo-500/40">
+              <Eye className="w-4 h-4 text-cyan-400" />
+            </div>
+            <h2 className="font-black text-sm uppercase tracking-wider">Attendant Pass Details</h2>
           </div>
           <button
             onClick={onClose}
-            className="text-sky-200 hover:text-white p-1 rounded hover:bg-sky-700 transition"
+            className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          <div className="flex items-center justify-between bg-sky-50 border border-sky-200 p-4 rounded-xl">
+        <div className="p-6 space-y-5">
+          {/* WARD - FIRST AND BIGGEST FIELD */}
+          <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 border-2 border-indigo-400/60 p-4 rounded-xl shadow-lg flex items-center justify-between text-white">
             <div>
-              <span className="text-[10px] font-bold uppercase text-sky-600 block">
-                Card Number
+              <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300 block">
+                ★ AUTHORIZED WARD LOCATION ★
               </span>
-              <span className="text-xl font-black text-sky-900">{card.cardNumber}</span>
+              <span className="text-2xl font-black text-amber-300 uppercase tracking-wider block mt-0.5">
+                {card.wardName}
+              </span>
+            </div>
+            <div className="text-right">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">
+                CARD NUMBER
+              </span>
+              <span className="text-lg font-black text-white">{card.cardNumber}</span>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
+            <div className="text-xs">
+              <span className="text-[10px] font-bold uppercase text-slate-500 block">
+                Date of Issue
+              </span>
+              <span className="font-bold text-slate-900">
+                {card.dateOfIssue ? format(new Date(card.dateOfIssue), 'dd-MM-yyyy') : ''}
+              </span>
             </div>
             <div>
               <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${
@@ -77,14 +99,12 @@ export default function ViewCardModal({
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
+            <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-2">
               <h3 className="text-xs font-bold uppercase text-slate-500 border-b pb-1">
                 Patient Details
               </h3>
               <p className="text-xs"><strong className="text-slate-600">MR Number:</strong> {card.mrNumber}</p>
               <p className="text-xs"><strong className="text-slate-600">Patient Name:</strong> {card.patientName}</p>
-              <p className="text-xs"><strong className="text-slate-600">Ward Name:</strong> {card.wardName}</p>
-              <p className="text-xs"><strong className="text-slate-600">Issue Date:</strong> {card.dateOfIssue ? format(new Date(card.dateOfIssue), 'dd-MM-yyyy') : ''}</p>
             </div>
 
             <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
