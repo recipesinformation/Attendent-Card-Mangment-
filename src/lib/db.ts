@@ -16,40 +16,40 @@ function getDatabaseUrl(): string {
     const tmpDir = '/tmp';
     const tmpDb = path.join(tmpDir, 'dev.db');
 
-    if (!fs.existsSync(tmpDb)) {
+    // Always copy the fresh bundled database to /tmp on every cold start
+    // so new data and deployments always take effect
+    try {
+      fs.mkdirSync(tmpDir, { recursive: true });
+    } catch (e) {
+      // ignore if exists
+    }
+
+    const candidatePaths = [
+      path.join(process.cwd(), 'prisma', 'dev.db'),
+      path.join(process.cwd(), 'dev.db'),
+      path.resolve(process.cwd(), '.next/server/prisma/dev.db'),
+      path.resolve(__dirname, 'prisma/dev.db'),
+      path.resolve(__dirname, '../prisma/dev.db'),
+      path.resolve(__dirname, '../../prisma/dev.db'),
+      path.resolve(__dirname, '../../../prisma/dev.db'),
+    ];
+
+    let found = false;
+    for (const candidate of candidatePaths) {
       try {
-        fs.mkdirSync(tmpDir, { recursive: true });
-      } catch (e) {
-        // ignore if exists
-      }
-
-      const candidatePaths = [
-        path.join(process.cwd(), 'prisma', 'dev.db'),
-        path.join(process.cwd(), 'dev.db'),
-        path.resolve(process.cwd(), '.next/server/prisma/dev.db'),
-        path.resolve(__dirname, 'prisma/dev.db'),
-        path.resolve(__dirname, '../prisma/dev.db'),
-        path.resolve(__dirname, '../../prisma/dev.db'),
-        path.resolve(__dirname, '../../../prisma/dev.db'),
-      ];
-
-      let found = false;
-      for (const candidate of candidatePaths) {
-        try {
-          if (fs.existsSync(candidate)) {
-            fs.copyFileSync(candidate, tmpDb);
-            console.log(`[DB] Successfully copied database from ${candidate} to ${tmpDb}`);
-            found = true;
-            break;
-          }
-        } catch (e) {
-          console.warn(`[DB] Could not copy from ${candidate}:`, e);
+        if (fs.existsSync(candidate)) {
+          fs.copyFileSync(candidate, tmpDb);
+          console.log(`[DB] Copied fresh database from ${candidate} to ${tmpDb}`);
+          found = true;
+          break;
         }
+      } catch (e) {
+        console.warn(`[DB] Could not copy from ${candidate}:`, e);
       }
+    }
 
-      if (!found) {
-        console.warn('[DB] Warning: Pre-seeded database not found in any candidate path.');
-      }
+    if (!found) {
+      console.warn('[DB] Warning: Pre-seeded database not found in any candidate path.');
     }
 
     return `file:${tmpDb}`;
