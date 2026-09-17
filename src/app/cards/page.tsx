@@ -271,9 +271,9 @@ export default function AllCardsPage() {
                   <th className="px-4 py-3.5 whitespace-nowrap">Patient Name</th>
                   <th className="px-4 py-3.5 whitespace-nowrap">Attendant</th>
                   <th className="px-4 py-3.5 whitespace-nowrap">Phone</th>
-                  <th className="px-4 py-3.5 whitespace-nowrap">Payment</th>
-                  <th className="px-4 py-3.5 whitespace-nowrap">Return</th>
-                  <th className="px-4 py-3.5 whitespace-nowrap">Net</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Payment (PKR)</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Return (PKR)</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Net (PKR)</th>
                   <th className="px-4 py-3.5 whitespace-nowrap">Status</th>
                   <th className="px-4 py-3.5 text-right whitespace-nowrap min-w-[150px]">Actions</th>
                 </tr>
@@ -314,13 +314,13 @@ export default function AllCardsPage() {
                       <td className="px-4 py-3.5 text-slate-700 whitespace-nowrap">{card.attendantName}</td>
                       <td className="px-4 py-3.5 text-slate-600 whitespace-nowrap">{card.phoneNumber}</td>
                       <td className="px-4 py-3.5 font-black text-emerald-700 whitespace-nowrap">
-                        Rs. {Number(card.paymentReceived).toFixed(2)}
+                        PKR {Number(card.paymentReceived).toFixed(2)}
                       </td>
                       <td className="px-4 py-3.5 font-black text-rose-700 whitespace-nowrap">
-                        Rs. {Number(card.returnPayment).toFixed(2)}
+                        PKR {Number(card.returnPayment).toFixed(2)}
                       </td>
                       <td className="px-4 py-3.5 font-black text-indigo-950 whitespace-nowrap">
-                        Rs. {Number(card.netReceived).toFixed(2)}
+                        PKR {Number(card.netReceived).toFixed(2)}
                       </td>
                       <td className="px-4 py-3.5 whitespace-nowrap">
                         <span

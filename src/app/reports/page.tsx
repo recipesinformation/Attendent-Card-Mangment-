@@ -8,7 +8,7 @@ import {
   Building2,
   Printer,
   Loader2,
-  DollarSign,
+  Banknote,
   TrendingDown,
   Wallet,
 } from 'lucide-react';
@@ -119,8 +119,8 @@ export default function ReportsPage() {
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              <DollarSign className="w-4 h-4" />
-              <span>Payment Received</span>
+              <Banknote className="w-4 h-4" />
+              <span>Payment Received (PKR)</span>
             </button>
 
             <button
@@ -132,7 +132,7 @@ export default function ReportsPage() {
               }`}
             >
               <TrendingDown className="w-4 h-4" />
-              <span>Return Payment</span>
+              <span>Return Payment (PKR)</span>
             </button>
 
             <button
@@ -144,7 +144,7 @@ export default function ReportsPage() {
               }`}
             >
               <Wallet className="w-4 h-4" />
-              <span>Net Received</span>
+              <span>Net Received (PKR)</span>
             </button>
           </div>
 
@@ -219,21 +219,21 @@ export default function ReportsPage() {
                   <span className="text-xl font-black text-slate-700">{data.summary.returnedCards}</span>
                 </div>
                 <div className="bg-sky-50 p-3 rounded-lg border border-sky-200 text-center">
-                  <span className="block text-[10px] font-bold uppercase text-sky-700">Received</span>
+                  <span className="block text-[10px] font-bold uppercase text-sky-700">Received (PKR)</span>
                   <span className="text-sm font-black text-sky-900">
-                    Rs. {data.summary.paymentReceived.toFixed(2)}
+                    PKR {data.summary.paymentReceived.toFixed(2)}
                   </span>
                 </div>
                 <div className="bg-rose-50 p-3 rounded-lg border border-rose-200 text-center">
-                  <span className="block text-[10px] font-bold uppercase text-rose-700">Returned Amt</span>
+                  <span className="block text-[10px] font-bold uppercase text-rose-700">Returned (PKR)</span>
                   <span className="text-sm font-black text-rose-800">
-                    Rs. {data.summary.returnPayment.toFixed(2)}
+                    PKR {data.summary.returnPayment.toFixed(2)}
                   </span>
                 </div>
                 <div className="bg-sky-900 text-white p-3 rounded-lg text-center">
-                  <span className="block text-[10px] font-bold uppercase text-sky-200">Net Received</span>
+                  <span className="block text-[10px] font-bold uppercase text-sky-200">Net Received (PKR)</span>
                   <span className="text-sm font-black text-white">
-                    Rs. {data.summary.netReceived.toFixed(2)}
+                    PKR {data.summary.netReceived.toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -249,9 +249,9 @@ export default function ReportsPage() {
                       <th className="px-3 py-2.5">Patient</th>
                       <th className="px-3 py-2.5">Attendant</th>
                       <th className="px-3 py-2.5">Ward</th>
-                      <th className="px-3 py-2.5">Payment</th>
-                      <th className="px-3 py-2.5">Return</th>
-                      <th className="px-3 py-2.5">Net</th>
+                      <th className="px-3 py-2.5">Payment (PKR)</th>
+                      <th className="px-3 py-2.5">Return (PKR)</th>
+                      <th className="px-3 py-2.5">Net (PKR)</th>
                       <th className="px-3 py-2.5">Status</th>
                     </tr>
                   </thead>
@@ -272,13 +272,13 @@ export default function ReportsPage() {
                           <td className="px-3 py-2">{c.attendantName}</td>
                           <td className="px-3 py-2">{c.wardName}</td>
                           <td className="px-3 py-2 font-bold text-emerald-700">
-                            Rs. {c.paymentReceived.toFixed(2)}
+                            PKR {c.paymentReceived.toFixed(2)}
                           </td>
                           <td className="px-3 py-2 font-bold text-rose-700">
-                            Rs. {c.returnPayment.toFixed(2)}
+                            PKR {c.returnPayment.toFixed(2)}
                           </td>
                           <td className="px-3 py-2 font-bold text-sky-900">
-                            Rs. {c.netReceived.toFixed(2)}
+                            PKR {c.netReceived.toFixed(2)}
                           </td>
                           <td className="px-3 py-2 font-bold uppercase text-[10px]">
                             {c.status}
@@ -298,9 +298,9 @@ export default function ReportsPage() {
                   <tr>
                     <th className="px-4 py-3">Ward Name</th>
                     <th className="px-4 py-3">Total Cards</th>
-                    <th className="px-4 py-3">Payment Received</th>
-                    <th className="px-4 py-3">Return Payment</th>
-                    <th className="px-4 py-3">Net Received</th>
+                    <th className="px-4 py-3">Payment Received (PKR)</th>
+                    <th className="px-4 py-3">Return Payment (PKR)</th>
+                    <th className="px-4 py-3">Net Received (PKR)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 font-medium">
@@ -316,13 +316,13 @@ export default function ReportsPage() {
                         <td className="px-4 py-3 font-bold text-slate-900">{w.wardName}</td>
                         <td className="px-4 py-3 font-bold text-slate-800">{w.totalCards}</td>
                         <td className="px-4 py-3 font-bold text-emerald-700">
-                          Rs. {w.paymentReceived.toFixed(2)}
+                          PKR {w.paymentReceived.toFixed(2)}
                         </td>
                         <td className="px-4 py-3 font-bold text-rose-700">
-                          Rs. {w.returnPayment.toFixed(2)}
+                          PKR {w.returnPayment.toFixed(2)}
                         </td>
                         <td className="px-4 py-3 font-bold text-sky-900">
-                          Rs. {w.netReceived.toFixed(2)}
+                          PKR {w.netReceived.toFixed(2)}
                         </td>
                       </tr>
                     ))
@@ -350,16 +350,16 @@ export default function ReportsPage() {
                     : data.reportType === 'RETURN_PAYMENT' ? 'text-rose-700'
                     : 'text-sky-200'
                   }`}>
-                    {data.reportType === 'PAYMENT_RECEIVED' ? 'Total Payment Received'
-                     : data.reportType === 'RETURN_PAYMENT' ? 'Total Return Payment'
-                     : 'Total Net Received'}
+                    {data.reportType === 'PAYMENT_RECEIVED' ? 'Total Payment Received (PKR)'
+                     : data.reportType === 'RETURN_PAYMENT' ? 'Total Return Payment (PKR)'
+                     : 'Total Net Received (PKR)'}
                   </span>
                   <span className={`text-xl font-black ${
                     data.reportType === 'PAYMENT_RECEIVED' ? 'text-emerald-800'
                     : data.reportType === 'RETURN_PAYMENT' ? 'text-rose-800'
                     : 'text-white'
                   }`}>
-                    Rs. {data.reportType === 'PAYMENT_RECEIVED'
+                    PKR {data.reportType === 'PAYMENT_RECEIVED'
                       ? data.summary.paymentReceived.toFixed(2)
                       : data.reportType === 'RETURN_PAYMENT'
                       ? data.summary.returnPayment.toFixed(2)
@@ -369,10 +369,10 @@ export default function ReportsPage() {
                 <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 text-center">
                   <span className="block text-[10px] font-bold uppercase text-slate-600">Formula</span>
                   <div className="text-xs font-bold text-slate-700 mt-1">
-                    <div>Received: Rs. {data.summary.paymentReceived.toFixed(2)}</div>
-                    <div>- Return: Rs. {data.summary.returnPayment.toFixed(2)}</div>
+                    <div>Received: PKR {data.summary.paymentReceived.toFixed(2)}</div>
+                    <div>- Return: PKR {data.summary.returnPayment.toFixed(2)}</div>
                     <div className="border-t border-slate-300 pt-1 mt-1 font-black text-sky-900">
-                      = Net: Rs. {data.summary.netReceived.toFixed(2)}
+                      = Net: PKR {data.summary.netReceived.toFixed(2)}
                     </div>
                   </div>
                 </div>
@@ -388,9 +388,9 @@ export default function ReportsPage() {
                       <th className="px-3 py-2.5">Patient</th>
                       <th className="px-3 py-2.5">Attendant</th>
                       <th className="px-3 py-2.5">Ward</th>
-                      <th className="px-3 py-2.5">Received</th>
-                      <th className="px-3 py-2.5">Return</th>
-                      <th className="px-3 py-2.5">Net</th>
+                      <th className="px-3 py-2.5">Received (PKR)</th>
+                      <th className="px-3 py-2.5">Return (PKR)</th>
+                      <th className="px-3 py-2.5">Net (PKR)</th>
                       <th className="px-3 py-2.5">Status</th>
                     </tr>
                   </thead>
@@ -410,13 +410,13 @@ export default function ReportsPage() {
                           <td className="px-3 py-2">{c.attendantName}</td>
                           <td className="px-3 py-2">{c.wardName}</td>
                           <td className="px-3 py-2 font-bold text-emerald-700">
-                            Rs. {c.paymentReceived.toFixed(2)}
+                            PKR {c.paymentReceived.toFixed(2)}
                           </td>
                           <td className="px-3 py-2 font-bold text-rose-700">
-                            Rs. {c.returnPayment.toFixed(2)}
+                            PKR {c.returnPayment.toFixed(2)}
                           </td>
                           <td className="px-3 py-2 font-bold text-sky-900">
-                            Rs. {c.netReceived.toFixed(2)}
+                            PKR {c.netReceived.toFixed(2)}
                           </td>
                           <td className="px-3 py-2 font-bold uppercase text-[10px]">
                             {c.status}

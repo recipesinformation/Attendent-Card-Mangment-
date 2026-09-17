@@ -206,7 +206,7 @@ export default function EditCardModal({
           <div className="grid grid-cols-3 gap-3 border-t pt-3">
             <div>
               <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
-                Payment Received *
+                Payment Received (PKR) *
               </label>
               <input
                 type="number"
@@ -221,7 +221,7 @@ export default function EditCardModal({
 
             <div>
               <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
-                Return Payment
+                Return Payment (PKR)
               </label>
               <input
                 type="number"
@@ -235,12 +235,12 @@ export default function EditCardModal({
 
             <div>
               <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
-                Net Received
+                Net Received (PKR)
               </label>
               <input
                 type="text"
                 readOnly
-                value={`Rs. ${calculatedNet.toFixed(2)}`}
+                value={`PKR ${calculatedNet.toFixed(2)}`}
                 className="w-full px-3 py-1.5 border border-slate-200 bg-slate-100 rounded-lg text-xs font-extrabold text-sky-900 outline-none"
               />
             </div>

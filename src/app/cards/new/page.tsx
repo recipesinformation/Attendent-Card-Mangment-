@@ -9,7 +9,7 @@ import {
   CreditCard,
   Building2,
   Phone,
-  DollarSign,
+  Banknote,
   AlertCircle,
   CheckCircle2,
   Printer,
@@ -322,17 +322,27 @@ export default function NewCardPage() {
 
           {/* Section 4: Payment Information */}
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 space-y-4">
-            <div className="flex items-center space-x-2 border-b border-slate-100 pb-3 text-sky-800">
-              <DollarSign className="w-5 h-5" />
-              <h2 className="font-extrabold text-sm uppercase tracking-wider">
-                PAYMENT DETAILS
-              </h2>
+            <div className="flex items-center space-x-2.5 border-b border-slate-100 pb-3 text-indigo-900">
+              <div className="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg border border-indigo-100">
+                <Banknote className="w-5 h-5" />
+              </div>
+              <div>
+                <h2 className="font-black text-sm uppercase tracking-wider text-indigo-950">
+                  PAYMENT DETAILS (PKR)
+                </h2>
+                <p className="text-[11px] text-slate-500 font-medium">
+                  Hospital attendant security deposit collection in Pakistani Rupees (PKR)
+                </p>
+              </div>
+              <span className="ml-auto px-2 py-0.5 text-[10px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-md">
+                PKR
+              </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Payment Received (Rs.) *
+                  Payment Received (PKR) *
                 </label>
                 <input
                   type="number"
@@ -347,7 +357,7 @@ export default function NewCardPage() {
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Return Payment (Rs.)
+                  Return Payment (PKR)
                 </label>
                 <input
                   type="number"
@@ -361,12 +371,12 @@ export default function NewCardPage() {
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Net Received (Calculated)
+                  Net Received (PKR - Calculated)
                 </label>
                 <input
                   type="text"
                   readOnly
-                  value={`Rs. ${netReceived.toFixed(2)}`}
+                  value={`PKR ${netReceived.toFixed(2)}`}
                   className="w-full px-3 py-2 border border-slate-200 bg-slate-100 rounded-lg text-sm font-black text-sky-900 outline-none"
                 />
               </div>

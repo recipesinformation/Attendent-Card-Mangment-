@@ -124,16 +124,16 @@ export default function ViewCardModal({
 
           <div className="bg-slate-900 text-white rounded-xl p-4 grid grid-cols-3 gap-2 text-center">
             <div>
-              <span className="block text-[10px] font-bold uppercase text-slate-400">Payment Received</span>
-              <span className="text-base font-black text-emerald-400">Rs. {Number(card.paymentReceived).toFixed(2)}</span>
+              <span className="block text-[10px] font-bold uppercase text-slate-400">Payment Received (PKR)</span>
+              <span className="text-base font-black text-emerald-400">PKR {Number(card.paymentReceived).toFixed(2)}</span>
             </div>
             <div>
-              <span className="block text-[10px] font-bold uppercase text-slate-400">Return Payment</span>
-              <span className="text-base font-black text-rose-400">Rs. {Number(card.returnPayment).toFixed(2)}</span>
+              <span className="block text-[10px] font-bold uppercase text-slate-400">Return Payment (PKR)</span>
+              <span className="text-base font-black text-rose-400">PKR {Number(card.returnPayment).toFixed(2)}</span>
             </div>
             <div>
-              <span className="block text-[10px] font-bold uppercase text-slate-400">Net Received</span>
-              <span className="text-base font-black text-sky-400">Rs. {Number(card.netReceived).toFixed(2)}</span>
+              <span className="block text-[10px] font-bold uppercase text-slate-400">Net Received (PKR)</span>
+              <span className="text-base font-black text-sky-400">PKR {Number(card.netReceived).toFixed(2)}</span>
             </div>
           </div>
 

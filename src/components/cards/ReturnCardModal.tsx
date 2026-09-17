@@ -59,7 +59,7 @@ export default function ReturnCardModal({
     }
 
     if (numReturn > paymentReceived) {
-      setError(`Return Payment cannot exceed Payment Received (Rs. ${paymentReceived.toFixed(2)}).`);
+      setError(`Return Payment cannot exceed Payment Received (PKR ${paymentReceived.toFixed(2)}).`);
       return;
     }
 
@@ -148,19 +148,19 @@ export default function ReturnCardModal({
           <div className="grid grid-cols-2 gap-3 pt-1">
             <div className="bg-emerald-500/10 border border-emerald-500/30 p-3 rounded-xl">
               <span className="block text-[10px] font-bold uppercase text-emerald-400 tracking-wider">
-                Payment Received
+                Payment Received (PKR)
               </span>
               <span className="text-base font-extrabold text-emerald-300">
-                Rs. {paymentReceived.toFixed(2)}
+                PKR {paymentReceived.toFixed(2)}
               </span>
             </div>
 
             <div className="bg-amber-500/10 border border-amber-500/30 p-3 rounded-xl">
               <span className="block text-[10px] font-bold uppercase text-amber-400 tracking-wider">
-                Net Received
+                Net Received (PKR)
               </span>
               <span className="text-base font-extrabold text-amber-300">
-                Rs. {calculatedNet.toFixed(2)}
+                PKR {calculatedNet.toFixed(2)}
               </span>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function ReturnCardModal({
           {/* ── Return Amount Input ── */}
           <div>
             <label className="block text-xs font-bold text-indigo-300 uppercase tracking-wider mb-1.5">
-              Return Payment Amount (Rs.) *
+              Return Payment Amount (PKR) *
             </label>
             <input
               type="number"
@@ -181,7 +181,7 @@ export default function ReturnCardModal({
               className="w-full px-4 py-3 bg-slate-800/80 border-2 border-indigo-500/50 rounded-xl text-lg font-bold text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-200"
             />
             <p className="text-[11px] text-slate-400 mt-1.5">
-              Net Received will update to: <strong className="text-indigo-300">Rs. {calculatedNet.toFixed(2)}</strong>
+              Net Received will update to: <strong className="text-indigo-300">PKR {calculatedNet.toFixed(2)}</strong>
             </p>
           </div>
 

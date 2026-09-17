@@ -113,16 +113,16 @@ export default function PrintCardModal({ card, isOpen, onClose }: PrintCardModal
 
             <div className="border-t-2 border-slate-800 pt-2 grid grid-cols-3 gap-1 text-center bg-slate-50 p-2 rounded">
               <div>
-                <span className="block text-[9px] uppercase font-bold text-slate-500">Received</span>
-                <span className="text-xs font-black text-emerald-700">Rs. {Number(card.paymentReceived).toFixed(2)}</span>
+                <span className="block text-[9px] uppercase font-bold text-slate-500">Received (PKR)</span>
+                <span className="text-xs font-black text-emerald-700">PKR {Number(card.paymentReceived).toFixed(2)}</span>
               </div>
               <div>
-                <span className="block text-[9px] uppercase font-bold text-slate-500">Return</span>
-                <span className="text-xs font-black text-rose-700">Rs. {Number(card.returnPayment).toFixed(2)}</span>
+                <span className="block text-[9px] uppercase font-bold text-slate-500">Return (PKR)</span>
+                <span className="text-xs font-black text-rose-700">PKR {Number(card.returnPayment).toFixed(2)}</span>
               </div>
               <div>
-                <span className="block text-[9px] uppercase font-bold text-slate-500">Net</span>
-                <span className="text-xs font-black text-sky-800">Rs. {Number(card.netReceived).toFixed(2)}</span>
+                <span className="block text-[9px] uppercase font-bold text-slate-500">Net (PKR)</span>
+                <span className="text-xs font-black text-sky-800">PKR {Number(card.netReceived).toFixed(2)}</span>
               </div>
             </div>
 
@@ -198,16 +198,16 @@ export default function PrintCardModal({ card, isOpen, onClose }: PrintCardModal
 
           <div className="border-t-2 border-black pt-3 space-y-1 text-sm font-bold">
             <div className="flex justify-between">
-              <span>Payment Received:</span>
-              <span>Rs. {Number(card.paymentReceived).toFixed(2)}</span>
+              <span>Payment Received (PKR):</span>
+              <span>PKR {Number(card.paymentReceived).toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
-              <span>Return Payment:</span>
-              <span>Rs. {Number(card.returnPayment).toFixed(2)}</span>
+              <span>Return Payment (PKR):</span>
+              <span>PKR {Number(card.returnPayment).toFixed(2)}</span>
             </div>
             <div className="flex justify-between border-t border-black pt-1 text-base">
-              <span>NET RECEIVED:</span>
-              <span>Rs. {Number(card.netReceived).toFixed(2)}</span>
+              <span>NET RECEIVED (PKR):</span>
+              <span>PKR {Number(card.netReceived).toFixed(2)}</span>
             </div>
           </div>
 

@@ -10,7 +10,7 @@ import {
   CalendarCheck,
   CheckCircle2,
   RotateCcw,
-  DollarSign,
+  Banknote,
   TrendingDown,
   Wallet,
   Loader2,
@@ -181,17 +181,17 @@ export default function DashboardPage() {
             <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-extrabold text-sky-700 uppercase tracking-wider">
-                  PAYMENT RECEIVED
+                  PAYMENT RECEIVED (PKR)
                 </span>
                 <div className="p-2 bg-sky-100 text-sky-800 rounded-lg">
-                  <DollarSign className="w-5 h-5" />
+                  <Banknote className="w-5 h-5" />
                 </div>
               </div>
               <div className="mt-3">
                 <span className="text-2xl font-black text-sky-900">
-                  Rs. {(metrics?.paymentReceived ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  PKR {(metrics?.paymentReceived ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
-                <p className="text-[11px] text-slate-500 mt-1 font-medium">Gross deposit collection</p>
+                <p className="text-[11px] text-slate-500 mt-1 font-medium">Gross deposit collection (PKR)</p>
               </div>
             </div>
 
@@ -199,7 +199,7 @@ export default function DashboardPage() {
             <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-extrabold text-rose-600 uppercase tracking-wider">
-                  RETURN PAYMENT
+                  RETURN PAYMENT (PKR)
                 </span>
                 <div className="p-2 bg-rose-100 text-rose-700 rounded-lg">
                   <TrendingDown className="w-5 h-5" />
@@ -207,9 +207,9 @@ export default function DashboardPage() {
               </div>
               <div className="mt-3">
                 <span className="text-2xl font-black text-rose-700">
-                  Rs. {(metrics?.returnPayment ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  PKR {(metrics?.returnPayment ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
-                <p className="text-[11px] text-slate-500 mt-1 font-medium">Total returned deposit amount</p>
+                <p className="text-[11px] text-slate-500 mt-1 font-medium">Total returned deposit amount (PKR)</p>
               </div>
             </div>
 
@@ -217,7 +217,7 @@ export default function DashboardPage() {
             <div className="bg-sky-900 text-white p-5 rounded-xl border border-sky-800 shadow-md hover:shadow-lg transition">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-extrabold text-sky-200 uppercase tracking-wider">
-                  NET RECEIVED
+                  NET RECEIVED (PKR)
                 </span>
                 <div className="p-2 bg-sky-800 text-sky-200 rounded-lg">
                   <Wallet className="w-5 h-5" />
@@ -225,9 +225,9 @@ export default function DashboardPage() {
               </div>
               <div className="mt-3">
                 <span className="text-2xl font-black text-white">
-                  Rs. {(metrics?.netReceived ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  PKR {(metrics?.netReceived ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
-                <p className="text-[11px] text-sky-200 mt-1 font-medium">Net revenue retained</p>
+                <p className="text-[11px] text-sky-200 mt-1 font-medium">Net revenue retained (PKR)</p>
               </div>
             </div>
           </div>
@@ -263,9 +263,9 @@ export default function DashboardPage() {
                   <th className="px-4 py-3.5 whitespace-nowrap">MR No</th>
                   <th className="px-4 py-3.5 whitespace-nowrap">Patient Name</th>
                   <th className="px-4 py-3.5 whitespace-nowrap">Attendant</th>
-                  <th className="px-4 py-3.5 whitespace-nowrap">Payment</th>
-                  <th className="px-4 py-3.5 whitespace-nowrap">Return</th>
-                  <th className="px-4 py-3.5 whitespace-nowrap">Net</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Payment (PKR)</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Return (PKR)</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Net (PKR)</th>
                   <th className="px-4 py-3.5 whitespace-nowrap">Status</th>
                 </tr>
               </thead>
@@ -293,13 +293,13 @@ export default function DashboardPage() {
                       <td className="px-4 py-3.5 font-black text-slate-900 whitespace-nowrap">{card.patientName}</td>
                       <td className="px-4 py-3.5 text-slate-700 whitespace-nowrap">{card.attendantName}</td>
                       <td className="px-4 py-3.5 font-black text-emerald-700 whitespace-nowrap">
-                        Rs. {card.paymentReceived.toFixed(2)}
+                        PKR {card.paymentReceived.toFixed(2)}
                       </td>
                       <td className="px-4 py-3.5 font-black text-rose-700 whitespace-nowrap">
-                        Rs. {card.returnPayment.toFixed(2)}
+                        PKR {card.returnPayment.toFixed(2)}
                       </td>
                       <td className="px-4 py-3.5 font-black text-indigo-950 whitespace-nowrap">
-                        Rs. {card.netReceived.toFixed(2)}
+                        PKR {card.netReceived.toFixed(2)}
                       </td>
                       <td className="px-4 py-3.5 whitespace-nowrap">
                         <span
