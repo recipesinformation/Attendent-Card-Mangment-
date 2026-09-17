@@ -264,18 +264,18 @@ export default function AllCardsPage() {
             <table className="w-full text-left text-xs">
               <thead className="bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950 text-white font-black uppercase tracking-wider border-b border-indigo-900/50">
                 <tr>
-                  <th className="px-4 py-3.5">Card No</th>
-                  <th className="px-4 py-3.5 text-amber-300">★ Authorized Ward</th>
-                  <th className="px-4 py-3.5">Date</th>
-                  <th className="px-4 py-3.5">MR No</th>
-                  <th className="px-4 py-3.5">Patient Name</th>
-                  <th className="px-4 py-3.5">Attendant</th>
-                  <th className="px-4 py-3.5">Phone</th>
-                  <th className="px-4 py-3.5">Payment</th>
-                  <th className="px-4 py-3.5">Return</th>
-                  <th className="px-4 py-3.5">Net</th>
-                  <th className="px-4 py-3.5">Status</th>
-                  <th className="px-4 py-3.5 text-right">Actions</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Card No</th>
+                  <th className="px-4 py-3.5 text-amber-300 whitespace-nowrap">★ Authorized Ward</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Date</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">MR No</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Patient Name</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Attendant</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Phone</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Payment</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Return</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Net</th>
+                  <th className="px-4 py-3.5 whitespace-nowrap">Status</th>
+                  <th className="px-4 py-3.5 text-right whitespace-nowrap min-w-[150px]">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 font-medium text-slate-800">
@@ -299,30 +299,30 @@ export default function AllCardsPage() {
                 ) : (
                   cards.map((card) => (
                     <tr key={card.id} className="hover:bg-indigo-50/40 transition">
-                      <td className="px-4 py-3 font-black text-indigo-900">{card.cardNumber}</td>
+                      <td className="px-4 py-3.5 font-black text-indigo-900 whitespace-nowrap">{card.cardNumber}</td>
                       {/* WARD COLUMN - PROMINENT, BOLD & FIRST-CLASS */}
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3.5 whitespace-nowrap">
                         <span className="inline-block px-3 py-1 bg-gradient-to-r from-amber-500/20 to-amber-500/10 text-amber-950 border border-amber-300 rounded-lg font-black text-xs uppercase tracking-wide shadow-xs">
                           {card.wardName}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-slate-600">
+                      <td className="px-4 py-3.5 text-slate-600 whitespace-nowrap">
                         {card.dateOfIssue ? format(new Date(card.dateOfIssue), 'dd-MM-yyyy') : ''}
                       </td>
-                      <td className="px-4 py-3 font-semibold text-slate-700">{card.mrNumber}</td>
-                      <td className="px-4 py-3 font-black text-slate-900">{card.patientName}</td>
-                      <td className="px-4 py-3 text-slate-700">{card.attendantName}</td>
-                      <td className="px-4 py-3 text-slate-600">{card.phoneNumber}</td>
-                      <td className="px-4 py-3 font-black text-emerald-700">
+                      <td className="px-4 py-3.5 font-semibold text-slate-700 whitespace-nowrap">{card.mrNumber}</td>
+                      <td className="px-4 py-3.5 font-black text-slate-900 whitespace-nowrap">{card.patientName}</td>
+                      <td className="px-4 py-3.5 text-slate-700 whitespace-nowrap">{card.attendantName}</td>
+                      <td className="px-4 py-3.5 text-slate-600 whitespace-nowrap">{card.phoneNumber}</td>
+                      <td className="px-4 py-3.5 font-black text-emerald-700 whitespace-nowrap">
                         Rs. {Number(card.paymentReceived).toFixed(2)}
                       </td>
-                      <td className="px-4 py-3 font-black text-rose-700">
+                      <td className="px-4 py-3.5 font-black text-rose-700 whitespace-nowrap">
                         Rs. {Number(card.returnPayment).toFixed(2)}
                       </td>
-                      <td className="px-4 py-3 font-black text-indigo-950">
+                      <td className="px-4 py-3.5 font-black text-indigo-950 whitespace-nowrap">
                         Rs. {Number(card.netReceived).toFixed(2)}
                       </td>
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3.5 whitespace-nowrap">
                         <span
                           className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${
                             card.status === 'ACTIVE'
@@ -333,8 +333,8 @@ export default function AllCardsPage() {
                           {card.status}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-right">
-                        <div className="flex items-center justify-end space-x-1">
+                      <td className="px-4 py-3.5 text-right whitespace-nowrap min-w-[150px]">
+                        <div className="flex items-center justify-end space-x-1.5">
                           <button
                             onClick={() => {
                               setSelectedCard(card);
@@ -374,7 +374,7 @@ export default function AllCardsPage() {
                                 setSelectedCard(card);
                                 setIsReturnOpen(true);
                               }}
-                              className="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-[10px] font-bold uppercase transition flex items-center space-x-1"
+                              className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-[10px] font-bold uppercase transition flex items-center space-x-1 shadow-xs shrink-0"
                               title="Return Card Deposit"
                             >
                               <RotateCcw className="w-3 h-3" />

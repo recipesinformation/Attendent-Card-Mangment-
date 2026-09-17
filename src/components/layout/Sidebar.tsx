@@ -17,7 +17,7 @@ export default function NavigationTabs() {
 
   return (
     <nav className="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-md no-print sticky top-16 z-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex space-x-2 sm:space-x-3 py-2.5 overflow-x-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
