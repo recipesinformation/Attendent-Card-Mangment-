@@ -5,6 +5,7 @@ node_modules
 .env.local
 .env*.local
 *.db
+!prisma/dev.db
 *.db-journal
 build
 dist
