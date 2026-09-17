@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Print Styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide header, sidebar, navigation, search, pagination, and action buttons during print */
+  .no-print,
+  .print-hide,
+  header,
+  nav,
+  aside,
+  button:not(.print-keep),
+  footer {
+    display: none !important;
+  }
+
+  /* Show only the printable container */
+  .print-only {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+  }
+
+  .print-area {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 10mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+  }
+
+  /* Small card-size print layout */
+  .print-card-size {
+    width: 100mm !important;
+    max-width: 100mm !important;
+    margin: 0 auto !important;
+    padding: 5mm !important;
+    page-break-inside: avoid;
+  }
+
+  /* Ensure tables print cleanly */
+  table {
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  /* Reset backgrounds for print readability */
+  .print-area * {
+    box-shadow: none !important;
+  }
+}
+
+@media screen {
+  .print-only {
+    display: none;
+  }
+}

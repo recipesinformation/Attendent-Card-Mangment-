@@ -1,0 +1,56 @@
+// Prisma schema for Attendant Card Management System
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String
+  name      String
+  role      String   @default("STAFF")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  createdCards AttendantCard[] @relation("CreatedBy")
+  updatedCards AttendantCard[] @relation("UpdatedBy")
+}
+
+model AttendantCard {
+  id              String     @id @default(uuid())
+  cardNumber      String     @unique
+  dateOfIssue     DateTime   @default(now())
+  mrNumber        String
+  patientName     String
+  attendantName   String
+  phoneNumber     String
+  wardName        String
+  paymentReceived Decimal    @default(0)
+  returnPayment   Decimal    @default(0)
+  netReceived     Decimal    @default(0)
+  status          String     @default("ACTIVE")
+
+  createdById     String?
+  createdBy       User?      @relation("CreatedBy", fields: [createdById], references: [id])
+  updatedById     String?
+  updatedBy       User?      @relation("UpdatedBy", fields: [updatedById], references: [id])
+
+  returnedAt      DateTime?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([cardNumber])
+  @@index([mrNumber])
+  @@index([patientName])
+  @@index([attendantName])
+  @@index([phoneNumber])
+  @@index([dateOfIssue])
+  @@index([wardName])
+  @@index([status])
+}
