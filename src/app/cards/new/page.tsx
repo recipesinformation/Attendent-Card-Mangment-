@@ -117,7 +117,7 @@ export default function NewCardPage() {
 
   return (
     <AppLayout>
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="w-full space-y-6">
         <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950 p-6 rounded-2xl border border-indigo-900/60 shadow-xl flex items-center justify-between text-white">
           <div className="flex items-center space-x-3.5">
             <div className="p-3 rounded-xl bg-indigo-500/20 border border-indigo-500/40 text-cyan-400">
