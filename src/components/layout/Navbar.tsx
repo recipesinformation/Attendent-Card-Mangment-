@@ -25,7 +25,6 @@ export default function Navbar() {
   };
 
   return (
-  return (
     <header className="bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950 text-white border-b border-indigo-900/60 shadow-xl sticky top-0 z-30 no-print backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3 flex items-center justify-between">
         <div className="flex items-center space-x-3.5">
